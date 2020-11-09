@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
         message.channel.send('Çekiliş yeniden başlatıldı');
     })
     .catch((e) => {
-        if(e.startsWith(`Giveaway with message ID ${giveaway.messageID} is not ended.`)){
+        if(e.startsWith(`idsi ${giveaway.messageID} olan çekiliş henüz bitmedi.`)){
             message.channel.send('Bu çekiliş bitmemiş!');
         } else {
             console.error(e);
