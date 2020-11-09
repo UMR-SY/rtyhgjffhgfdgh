@@ -4,7 +4,7 @@ const fs = require('fs');
 const config = require('./config.json');
 client.config = config;
 
-// Init discord giveaways
+//Coded by Zero x Pythonic
 const { GiveawaysManager } = require('discord-giveaways');
 client.giveawaysManager = new GiveawaysManager(client, {
     storage: "./database.json",
@@ -15,15 +15,15 @@ client.giveawaysManager = new GiveawaysManager(client, {
         reaction: "🎉"
     }
 });
-//Coded by Zero
+//Coded by Zero x Pythonic
 
-/* Load all events */
+//Coded by Zero x Pythonic
 fs.readdir("./events/", (_err, files) => {
     files.forEach((file) => {
         if (!file.endsWith(".js")) return;
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
-        console.log(`👌 Event loaded: ${eventName}`);
+        console.log(`👌 Event yüklendi: ${eventName}`);
         client.on(eventName, event.bind(null, client));
         delete require.cache[require.resolve(`./events/${file}`)];
     });
@@ -31,16 +31,16 @@ fs.readdir("./events/", (_err, files) => {
 
 client.commands = new Discord.Collection();
 
-/* Load all commands */
+//Coded by Zero x Pythonic
 fs.readdir("./commands/", (_err, files) => {
     files.forEach((file) => {
         if (!file.endsWith(".js")) return;
         let props = require(`./commands/${file}`);
         let commandName = file.split(".")[0];
         client.commands.set(commandName, props);
-        console.log(`👌 Command loaded: ${commandName}`);
+        console.log(`👌 Komut yüklendi: ${commandName}`);
     });
 });
 
-// Login through the client
+//Coded by Zero x Pythonic
 client.login(config.token);

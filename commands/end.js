@@ -1,41 +1,41 @@
 const ms = require('ms');
 
 exports.run = async (client, message, args) => {
-
-    // If the member doesn't have enough permissions
+  
+//Coded by Zero x Pythonic
     if(!message.member.hasPermission('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
-        return message.channel.send(':x: You need to have the manage messages permissions to reroll giveaways.');
+        return message.channel.send(':x: Çekiliş yapmak için yeterli yetkiye sahip değilsin');
     }
 
-    // If no message ID or giveaway name is specified
+//Coded by Zero x Pythonic
     if(!args[0]){
-        return message.channel.send(':x: You have to specify a valid message ID!');
+        return message.channel.send(':x: Bir mesaj idsi yazman gerekiyor!');
     }
-
-    // try to found the giveaway with prize then with ID
+  
+//Coded by Zero x Pythonic
     let giveaway = 
-    // Search with giveaway prize
+//Coded by Zero x Pythonic
     client.giveawaysManager.giveaways.find((g) => g.prize === args.join(' ')) ||
-    // Search with giveaway ID
+//Coded by Zero x Pythonic
     client.giveawaysManager.giveaways.find((g) => g.messageID === args[0]);
 
-    // If no giveaway was found
+//Coded by Zero x Pythonic
     if(!giveaway){
-        return message.channel.send('Unable to find a giveaway for `'+ args.join(' ') + '`.');
+        return message.channel.send('Bir çekiliş için ödül bulamıyorum: `'+ args.join(' ') + '`.');
     }
 
-    // Edit the giveaway
+//Coded by Zero x Pythonic
     client.giveawaysManager.edit(giveaway.messageID, {
         setEndTimestamp: Date.now()
     })
-    // Success message
+   //Coded by Zero x Pythonic
     .then(() => {
-        // Success message
-        message.channel.send('Giveaway will end in less than '+(client.giveawaysManager.options.updateCountdownEvery/1000)+' seconds...');
+        //Coded by Zero x Pythonic
+        message.channel.send('Bir çekiliş yakın zamanda bitiyor '+(client.giveawaysManager.options.updateCountdownEvery/1000)+' seconds...');
     })
     .catch((e) => {
-        if(e.startsWith(`Giveaway with message ID ${giveaway.messageID} is already ended.`)){
-            message.channel.send('This giveaway is already ended!');
+        if(e.startsWith(`Mesaj idsi ${giveaway.messageID} olan çekiliş çoktan bitti.`)){
+            message.channel.send('Bu çekiliş zaten bitti');
         } else {
             console.error(e);
             message.channel.send('An error occured...');

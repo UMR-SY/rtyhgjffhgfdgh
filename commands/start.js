@@ -2,37 +2,37 @@ const ms = require('ms');
 
 exports.run = async (client, message, args) => {
 
-    // If the member doesn't have enough permissions
+  //Coded by Zero x Pythonic
     if(!message.member.hasPermission('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
-        return message.channel.send(':x: You need to have the manage messages permissions to start giveaways.');
+        return message.channel.send(':x: Çekiliş başlatmak için yetkiye sahip değilsin.');
     }
 
     // Giveaway channel
     let giveawayChannel = message.mentions.channels.first();
     // If no channel is mentionned
     if(!giveawayChannel){
-        return message.channel.send(':x: You have to mention a valid channel!');
+        return message.channel.send(':x: Bir kanal etiketlemen lazım!');
     }
 
     // Giveaway duration
     let giveawayDuration = args[1];
     // If the duration isn't valid
     if(!giveawayDuration || isNaN(ms(giveawayDuration))){
-        return message.channel.send(':x: You have to specify a valid duration!');
+        return message.channel.send(':x: Bi zaman belirtmen lazım (d,h,m,s)!');
     }
 
     // Number of winners
     let giveawayNumberWinners = args[2];
     // If the specified number of winners is not a number
     if(isNaN(giveawayNumberWinners) || (parseInt(giveawayNumberWinners) <= 0)){
-        return message.channel.send(':x: You have to specify a valid number of winners!');
+        return message.channel.send(':x: Kaç kişinin çekilişi kazanacağını yazmalısın!');
     }
 
     // Giveaway prize
     let giveawayPrize = args.slice(3).join(' ');
     // If no prize is specified
     if(!giveawayPrize){
-        return message.channel.send(':x: You have to specify a valid prize!');
+        return message.channel.send(':x: Bir ödül koymalısın');
     }
 
     // Start the giveaway
@@ -47,10 +47,10 @@ exports.run = async (client, message, args) => {
         hostedBy: client.config.hostedBy ? message.author : null,
         // Messages
         messages: {
-            giveaway: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **GIVEAWAY** 🎉🎉",
-            giveawayEnded: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **GIVEAWAY ENDED** 🎉🎉",
-            timeRemaining: "Time remaining: **{duration}**!",
-            inviteToParticipate: "React with 🎉 to participate!",
+            giveaway: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **ÇEKİLİŞ** 🎉🎉",
+            giveawayEnded: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **ÇEKİLİŞ SONA ERDİ** 🎉🎉",
+            timeRemaining: "Kalan süre: **{duration}**!",
+            inviteToParticipate: "Katılamk için 🎉 emojisine basın",
             winMessage: "Congratulations, {winners}! You won **{prize}**!",
             embedFooter: "Giveaways",
             noWinner: "Giveaway cancelled, no valid participations.",
