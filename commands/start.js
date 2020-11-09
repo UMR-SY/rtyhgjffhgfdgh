@@ -7,66 +7,66 @@ exports.run = async (client, message, args) => {
         return message.channel.send(':x: Çekiliş başlatmak için yetkiye sahip değilsin.');
     }
 
-    // Giveaway channel
+   //Coded by Zero x Pythonic
     let giveawayChannel = message.mentions.channels.first();
-    // If no channel is mentionned
+    //Coded by Zero x Pythonic
     if(!giveawayChannel){
         return message.channel.send(':x: Bir kanal etiketlemen lazım!');
     }
 
-    // Giveaway duration
+    //Coded by Zero x Pythonic
     let giveawayDuration = args[1];
-    // If the duration isn't valid
+   //Coded by Zero x Pythonic
     if(!giveawayDuration || isNaN(ms(giveawayDuration))){
         return message.channel.send(':x: Bi zaman belirtmen lazım (d,h,m,s)!');
     }
 
-    // Number of winners
+//Coded by Zero x Pythonic
     let giveawayNumberWinners = args[2];
-    // If the specified number of winners is not a number
+   //Coded by Zero x Pythonic
     if(isNaN(giveawayNumberWinners) || (parseInt(giveawayNumberWinners) <= 0)){
         return message.channel.send(':x: Kaç kişinin çekilişi kazanacağını yazmalısın!');
     }
 
-    // Giveaway prize
+   //Coded by Zero x Pythonic
     let giveawayPrize = args.slice(3).join(' ');
-    // If no prize is specified
+    //Coded by Zero x Pythonic
     if(!giveawayPrize){
         return message.channel.send(':x: Bir ödül koymalısın');
     }
 
-    // Start the giveaway
+//Coded by Zero x Pythonic
     client.giveawaysManager.start(giveawayChannel, {
-        // The giveaway duration
+  //Coded by Zero x Pythonic
         time: ms(giveawayDuration),
-        // The giveaway prize
+//Coded by Zero x Pythonic
         prize: giveawayPrize,
-        // The giveaway winner count
+//Coded by Zero x Pythonic
         winnerCount: giveawayNumberWinners,
-        // Who hosts this giveaway
+   //Coded by Zero x Pythonic
         hostedBy: client.config.hostedBy ? message.author : null,
-        // Messages
+//Coded by Zero x Pythonic
         messages: {
             giveaway: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **ÇEKİLİŞ** 🎉🎉",
             giveawayEnded: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **ÇEKİLİŞ SONA ERDİ** 🎉🎉",
             timeRemaining: "Kalan süre: **{duration}**!",
             inviteToParticipate: "Katılamk için 🎉 emojisine basın",
-            winMessage: "Congratulations, {winners}! You won **{prize}**!",
-            embedFooter: "Giveaways",
-            noWinner: "Giveaway cancelled, no valid participations.",
-            hostedBy: "Hosted by: {user}",
-            winners: "winner(s)",
-            endedAt: "Ended at",
+            winMessage: "Tebrikler, {winners}! Kazandığın ödül: **{prize}**!",
+            embedFooter: "Çekilişler",
+            noWinner: "Çekilişe kimse katılmadığı için sona erdi.",
+            hostedBy: "Çekilişi yapan: {user}",
+            winners: "kazanan(lar)",
+            endedAt: "Bittiği tarih",
             units: {
-                seconds: "seconds",
-                minutes: "minutes",
-                hours: "hours",
-                days: "days",
-                pluralS: false // Not needed, because units end with a S so it will automatically removed if the unit value is lower than 2
+                seconds: "saniye",
+                minutes: "dakika",
+                hours: "saat",
+                days: "gün",
+                pluralS: false //Coded by Zero x Pythonic
             }
         }
     });
 
-    message.channel.send(`Giveaway started in ${giveawayChannel}!`);
+    message.channel.send(`bir çekiliş başladı, ${giveawayChannel}!`);
 
 };
