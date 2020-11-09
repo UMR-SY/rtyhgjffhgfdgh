@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
-const config = require('./config.json');
+const express = require('express');
+const http = require('http');
+const config = require('./ayarlar.json');
 client.config = config;
 
 //Coded by Zero x Pythonic
@@ -16,6 +18,26 @@ client.giveawaysManager = new GiveawaysManager(client, {
     }
 });
 //Coded by Zero x Pythonic
+
+//UPTIMER BY Zero x Pythonic
+
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + "7/24 AKTİF TUTMA İŞLEMİ BAŞARILI");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+
+var prefix = config.prefix;
+
+const log = message => {
+    console.log(`${message}`);
+};
+
+
 
 //Coded by Zero x Pythonic
 fs.readdir("./events/", (_err, files) => {
