@@ -47,8 +47,8 @@ exports.run = async (client, message, args) => {
         hostedBy: client.config.hostedBy ? message.author : null,
 //Coded by Zero x Pythonic
         messages: {
-            giveaway: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **ÇEKİLİŞ** 🎉🎉",
-            giveawayEnded: (client.config.everyoneMention ? "@everyone\n\n" : "")+"🎉🎉 **ÇEKİLİŞ SONA ERDİ** 🎉🎉",
+            giveaway: (client.config.everyoneMention ? "@everyone\n\n" : "")+"çekiliş başladı",
+            giveawayEnded: (client.config.everyoneMention ? "@everyone\n\n" : "")+"çekiliş bitti",
             timeRemaining: "Kalan süre: **{duration}**!",
             inviteToParticipate: "Katılamk için 🎉 emojisine basın",
             winMessage: "Tebrikler, {winners}! Kazandığın ödül: **{prize}**!",

@@ -17,17 +17,12 @@ module.exports.run = async (client, message, args) => {
     let cores = os.cpus().length;
 
     let stats = new Discord.MessageEmbed()
-    .setAuthor('0_0#6666 (Zero)')
+    .setAuthor('PYTHONIC x ZERO')
     .setTitle(`Statistics of ${client.user.username}`)
     .setColor('RED')
-    .addField("Server Count", `${servercount}`, true)
-    .addField("Users Count", `${usercount}`, true)
-    .addField("Channel's Count", `${channelscount}`, true)
-    .addField('Architecture', `${arch}`, true)
-    .addField('Platform', `${platform}`, true)
-    .addField('Node-Version', `${NodeVersion}`, true)
-    .addField('Shards', `${shard}`, true)
-    .addField('Cores', `${cores}`, true)
+    .addField("Sunucu sayısı", `${servercount}`, true)
+    .addField("Kullanıcı sayısı", `${usercount}`, true)
+    .addField("Kanal sayısı", `${channelscount}`, true)
     .setTimestamp()
     .setFooter(`${message.author.tag}`, message.author.displayAvatarURL());
     message.channel.send(stats);
